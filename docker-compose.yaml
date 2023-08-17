@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  flask:
+    build: ./server/
+    container_name: flask-server
+    working_dir: /var/www/server
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server/:/var/www/server
+    tty: true
+  node:
+    image: node:latest
+    container_name: node-clients
+    working_dir: /var/www/client/
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server/:/var/www/server/
+      - ./client/:/var/www/client/
+    tty: true
