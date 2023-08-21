@@ -1,8 +1,13 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react'
 import Header from '../Components/Header.tsx';
 
 const Home: React.FC = () => {
+  // const socket = io("ws://127.0.0.1:5000")
+  // const user_data = "tsubasa"
+  // useEffect(() => {
+  //   socket.emit('my_disconnect', user_data);
+  //   socket.disconnect()
+  // },[])
   return (
 <div className="h-screen bg-home-bg-img  bg-cover">
   <Header/>
@@ -12,25 +17,25 @@ const Home: React.FC = () => {
             <div className='my-2 px-5'>♠ ユーザー名: hogehoge</div>
             <div className='my-2 px-5'>♦ rate: 100</div>
             <div className='my-2 px-5'>♣ 試合数: 10</div>
-            <div className='my-2 px-5'>❤ 勝率: 60%</div>
+            <div className='my-2 px-5'>♥ 勝率: 60%</div>
           </div>
           <div className='flex flex-col lg:flex-row'>
-          <Link to="/matching" className="flex items-center justify-center m-5 p-6 text-4xl">
+          <a href="/matching" className="flex items-center justify-center m-5 p-6 text-4xl">
             <button
               className="bg-gray-900 hover:text-gray-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline italic"
               type="button"
             >
               vs Online
             </button>
-          </Link>          
-          <Link to="/vsCPU" className="flex items-center justify-center text-4xl">
+          </a>          
+          {/* <Link to="/vsCPU" className="flex items-center justify-center text-4xl">
             <button
               className="bg-gray-900 hover:text-gray-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline italic"
               type="button"
             >
               vs CPU
             </button>
-          </Link>
+          </Link> */}
           </div>
   </div>
 </div>

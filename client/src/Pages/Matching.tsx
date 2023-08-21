@@ -1,8 +1,30 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { io }  from 'socket.io-client';
+import Cookies from 'js-cookie';
 import Header from '../Components/Header.tsx';
 
+
 const Matching: React.FC = () => {
+  const socket = io("ws://127.0.0.1:5000")
+  const user_name = Math.random().toString(32).substring(2) 
+  let match = false
+  window.onbeforeunload = () => {
+    if(!match){
+      socket.emit('my_disconnect', user_name);
+    }
+    socket.disconnect()
+}
+
+  useEffect(() => {
+    socket.emit("join_room",user_name)
+    socket.on("match",(msg:any) => {
+          match = true
+          Cookies.set("user_name",user_name)
+          Cookies.set("table_id",msg["table_id"])
+          window.location.href = "/game" 
+    })
+  },[])
+
   return (
 <div className='bg-home-bg-img h-screen bg-cover bg-opacity-10'>
 <Header/>
