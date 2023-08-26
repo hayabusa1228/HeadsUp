@@ -33,6 +33,9 @@ game_engine = Game_Engine()
 waiting_users = []
 rooms = []
 
+@app.route("/")
+def show_index():
+   return "Hello World"
 
 @socketio.on("sign_up")
 def sign_up(username,password):
