@@ -6,7 +6,7 @@ import Header from '../Components/Header.tsx';
 
 const Matching: React.FC = () => {
   const socket = io("ws://127.0.0.1:5000")
-  const user_name = Math.random().toString(32).substring(2) 
+  const user_name = Cookies.get("user_name")
   let match = false
   window.onbeforeunload = () => {
     if(!match){
@@ -18,9 +18,17 @@ const Matching: React.FC = () => {
   useEffect(() => {
     socket.emit("join_room",user_name)
     socket.on("match",(msg:any) => {
+          console.log(msg)
           match = true
-          Cookies.set("user_name",user_name)
+          Cookies.set("user_name",String(user_name))
           Cookies.set("table_id",msg["table_id"])
+          Cookies.set("winner","None")
+          msg["users"].forEach(user => {
+            if(user !== user_name){
+              Cookies.set("op_name",user)
+            }
+          });
+          socket.disconnect()
           window.location.href = "/game" 
     })
   },[])
@@ -28,7 +36,9 @@ const Matching: React.FC = () => {
   return (
 <div className='bg-home-bg-img h-screen bg-cover bg-opacity-10'>
 <Header/>
-<div className='flex items-center justify-center text-4xl bg-gray-900 text-white border-4 border-white border-double p-3'>対戦相手を探しています</div>
+<div className="absolute flex-col lg:flex-row inset-0 flex items-center justify-center text-white w-full">
+<div className='bg-gray-900 p-10 text-xl rounded-xl border-double border-4 border-white'>対戦相手を探しています</div>
+</div>
 </div>
   )
 }

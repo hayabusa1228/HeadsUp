@@ -1,11 +1,12 @@
 import random
 from Card import Card
-from State import State
+from Room import Room
+
 
 class Game_Engine:
     # 0:クラブ 1:ダイヤ 2:ハート 3:スペード
     cards = [Card(i,j) for i in range(4) for j in range(1,14)]
-    def get_cards_and_result(self):
+    def get_room_info(self):
         random.shuffle(self.cards)
         player1_cards = [self.cards[0],self.cards[1]]
         player2_cards = [self.cards[2],self.cards[3]]
@@ -14,7 +15,7 @@ class Game_Engine:
         p1_best_role = result[0]
         p2_best_role = result[1]
         winner = result[2]
-        return State(player1_cards,player2_cards,common_cards,self.check_role(p1_best_role),self.check_role(p2_best_role),winner)
+        return Room(player1_cards,player2_cards,common_cards,self.check_role(p1_best_role),self.check_role(p2_best_role),winner)
                             
     # 0:ハイカード 1:ワンペア 2:
     def judge_result(self,p1_cards,p2_cards,common_cards):
@@ -49,23 +50,32 @@ class Game_Engine:
                                 
     def check_role(self,cards):
         i = self.check_straight_flush(cards)
-        if(i != -1): return "straight_flush:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "straight_flush"
         i = self.check_4cards(cards)
-        if(i != -1): return "4cards:"+ str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "4cards("+ str(i) + ")"
         i = self.check_fullhouse(cards)
-        if(i != -1): return "full_house:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "full_house"
         i = self.check_flush(cards)
-        if(i != -1): return "flush:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "flush"
         i = self.check_straight(cards)
-        if(i != -1): return "straight:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "straight"
         i = self.check_3cards(cards)
-        if(i != -1): return "3cards:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "3cards(" + str(i) + ")"
         i = self.check_2pair(cards)
-        if(i != -1): return "2pair:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "2pair(" + str(i) + ")"
         i = self.check_1pair(cards)
-        if(i != -1): return "1pair:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return "1pair(" + str(i) + ")"
         i = self.check_highCard(cards)
-        if(i != -1): return "high_card:" + str(i)
+        if(i == 14): i = 1
+        if(i != -1): return str(i)+"High" 
 
 
     def compare_role(self,cards1,cards2):
@@ -132,9 +142,23 @@ class Game_Engine:
                     new_card2.append(card)
             cards2 = new_card2
         # highCard
-        i = self.check_highCard(cards1)
-        j = self.check_highCard(cards2)
-        result = self.compare(i,j)
+        result = 0
+        while result == 0 and [card.to_list() for card in cards1] !=  [card.to_list() for card in cards2]:
+            i = self.check_highCard(cards1)
+            j = self.check_highCard(cards2)
+            if(i == 14): i = 1
+            if(j == 14): j = 1  
+            result = self.compare(i,j)
+            new_card1 = []
+            for card in cards1:
+                if card.num != i:
+                    new_card1.append(card)
+            cards1 = new_card1
+            new_card2 = []
+            for card in cards2:
+                if card.num != j:
+                    new_card2.append(card)
+            cards2 = new_card2
         return result
         
     def compare(self,i,j):
@@ -253,7 +277,7 @@ class Game_Engine:
               
 if __name__ == "__main__":
     game_engine =  Game_Engine()
-    state = game_engine.get_cards_and_result()
+    state = game_engine.get_room_info()
     print("p1")
     for card in state.player1.cards:
         print("suit:" + str(card.suit) + " num:" + str(card.num))

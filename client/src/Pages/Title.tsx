@@ -15,9 +15,9 @@ const Title: React.FC = () => {
             alt="logoが取得できませんでした"
           ></img>
           <div className="mt-20 text-white bg-gray-900 p-6 lg:p-8 rounded-2xl border-double border-4 border-white">
-            テキサスホールデムの対戦サイトです。<br></br>
-            10回勝負のヘッズアップができます。<br></br>
-            オンライン対戦とCPU対戦があります。<br></br>
+            テキサスホールデムのオンライン対戦サイトです。<br></br>
+            相手の所持金をBB以下にする、または10ハンドの後に所持金が多い方が勝ちです。<br></br>
+            1アクションの制限時間20秒を超えると、fold扱いになります。
           </div>
         </div>
       </div>

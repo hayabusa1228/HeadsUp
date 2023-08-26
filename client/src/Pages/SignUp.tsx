@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { io }  from 'socket.io-client';
 import Header from "../Components/Header.tsx";
 
 const SignUp: React.FC = () => {
+  const socket = io("ws://127.0.0.1:5000")
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  function togglePasswordVisibility() {
+    setIsPasswordVisible((prevState) => !prevState);
+  }
+
+  const [alert, set_alert] = useState("")
+  const nameRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
+
   return (
     <div className="bg-home-bg-img h-screen bg-cover bg-opacity-10">
       <Header />
@@ -20,9 +31,10 @@ const SignUp: React.FC = () => {
               id="username"
               type="text"
               placeholder="Username"
+              ref={nameRef}
             ></input>
           </div>
-          <div className="mb-6">
+          <div className="">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="password"
@@ -30,20 +42,45 @@ const SignUp: React.FC = () => {
               Password
             </label>
             <input
-              className="shadow appearance-none border text-gray-700 rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="text"
-              placeholder="password"
-            ></input>
+                type={isPasswordVisible ? "text" : "password"}
+                placeholder="Password"
+                className="shadow appearance-none border text-gray-700 rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                ref={passwordRef}
+            />
+            <label className="flex items-center mt-2">
+            <input
+                type="checkbox"
+                className="mr-2 w-4 h-4"
+                checked={isPasswordVisible}
+                onChange={togglePasswordVisibility}
+            />
+            <span className="text-sm text-gray-600">Show password</span>
+            </label>
           </div>
-          <Link to="/home" className="flex items-center justify-center">
+          {alert === "" ? <></> : <div className="text-red-600 m-1">{alert}</div>}
+          <div className="flex items-center justify-center m-3">
             <button
               className="bg-gray-900 hover:text-gray-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="button" onClick={() => {
+                console.log("name:",nameRef!.current!.value)
+                console.log("password:",passwordRef!.current!.value)
+                socket.emit("sign_up",nameRef!.current!.value,passwordRef!.current!.value)
+                socket.on("res_sign_up",(data: any) => {
+                  if(data["msg"]==="complete_sign_up"){
+                    window.location.href = "/"
+                  }else if(data["msg"]==="name_empty"){
+                    set_alert(() => "Usernameを入力してください")
+                  }else if(data["msg"]==="password_empty"){
+                    set_alert(() => "Passwordを入力してください")
+                  }else{
+                    set_alert(() => "Usernameが既に存在しています")
+                  }
+                })
+              }}
             >
               Sign Up
             </button>
-          </Link>
+          </div>
         </form>
       </div>
     </div>
