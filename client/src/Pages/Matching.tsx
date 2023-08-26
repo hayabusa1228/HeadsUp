@@ -5,7 +5,9 @@ import Header from '../Components/Header.tsx';
 
 
 const Matching: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000")
+  const socket = io("ws://127.0.0.1:5000",{
+    withCredentials: true
+  })
   const user_name = Cookies.get("user_name")
   let match = false
   window.onbeforeunload = () => {

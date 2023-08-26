@@ -5,7 +5,9 @@ import Header from '../Components/Header.tsx';
 
 
 const Result: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000")
+  const socket = io("ws://127.0.0.1:5000",{
+    withCredentials: true
+  })
   const winner  = Cookies.get("winner")
   const user_name = Cookies.get("user_name")
   const opponent_name = Cookies.get("op_name")

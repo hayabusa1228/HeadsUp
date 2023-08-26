@@ -4,7 +4,9 @@ import { io }  from 'socket.io-client';
 import Header from '../Components/Header.tsx';
 
 const Home: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000")
+  const socket = io("ws://127.0.0.1:5000",{
+    withCredentials: true
+  })
   const user_name = Cookies.get("user_name")
   const [rate, set_rate] = useState(0)
   const [match_num, set_match_num] = useState(0)

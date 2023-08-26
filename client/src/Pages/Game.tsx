@@ -5,7 +5,10 @@ import Header from '../Components/Header.tsx';
 import Result from './Result.tsx';
 
 const Game: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000")
+  const socket = io("ws://127.0.0.1:5000",{
+    withCredentials: true
+  }
+  )
   let game_end = false
   const table_id = Cookies.get("table_id")
 
