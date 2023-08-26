@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { io }  from 'socket.io-client';
 import Cookies from 'js-cookie';
 import Header from '../Components/Header.tsx';
-
+import url from "./Config.tsx"
 
 const Result: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000",{
+  const socket = io(url,{
     withCredentials: true
   })
   const winner  = Cookies.get("winner")

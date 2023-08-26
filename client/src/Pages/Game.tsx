@@ -3,9 +3,10 @@ import { io }  from 'socket.io-client';
 import Cookies from 'js-cookie';
 import Header from '../Components/Header.tsx';
 import Result from './Result.tsx';
+import url from "./Config.tsx"
 
 const Game: React.FC = () => {
-  const socket = io("ws://127.0.0.1:5000",{
+  const socket = io(url,{
     withCredentials: true
   }
   )

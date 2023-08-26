@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'secret!'
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO']=True
-socketio = SocketIO(app, cors_allowed_origins=['ws://127.0.0.1:3000','http://127.0.0.1:3000',"ws://13.115.0.82","http://13.115.0.82"])
+socketio = SocketIO(app, cors_allowed_origins="*")
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
