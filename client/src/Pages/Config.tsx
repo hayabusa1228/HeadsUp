@@ -1,3 +1,3 @@
-const url = "ws://13.115.0.82:5000" 
+const url = "ws://127.0.0.1:5000" 
 
 export default url 

@@ -1,11 +1,11 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify,render_template
 from game_engine import Game_Engine
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_socketio import SocketIO, emit,join_room,close_room
 import time
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder="./build/static", template_folder="./build")
 app.config['SECRET_KEY'] = 'secret!'
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -33,9 +33,10 @@ game_engine = Game_Engine()
 waiting_users = []
 rooms = []
 
+
 @app.route("/")
-def show_index():
-   return "Hello World"
+def index():
+    return render_template("index.html")
 
 @socketio.on("sign_up")
 def sign_up(username,password):
