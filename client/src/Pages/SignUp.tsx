@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { io }  from 'socket.io-client';
-import Header from "../Components/Header.tsx";
+import Header from "../Components/HomeHeader.tsx";
 import url from "./Config.tsx"
 
 const SignUp: React.FC = () => {
