@@ -1,7 +1,7 @@
 # Heads Up!
-テキサスホールデムの1vs1のオンライン対戦アプリです。<br>
+### テキサスホールデムの1vs1のオンライン対戦アプリです。<br>
 
-[アプリの構成]<br>
+_[アプリの構成]_<br>
 server: flask flask-socketio<br>
 client: react io-client<br>
 database:sqlite<br>
@@ -9,7 +9,7 @@ database:sqlite<br>
 リアルタイム通信のために、websocketを用いています。<br>
 CSSフレームワークはtailwindを使用しています。
 
-[サーバーの構成]<br>
+_[サーバーの構成]_<br>
 webserver: nginx<br>
 ↓<br>
 port 443 ssl: npm server<br>
