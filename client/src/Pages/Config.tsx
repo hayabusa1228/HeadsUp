@@ -1,3 +1,3 @@
-const url = "ws://127.0.0.1:5000" 
+const url = "wss://headsup.hayato-website.net:8081" 
 
 export default url 

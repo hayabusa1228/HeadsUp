@@ -37,6 +37,9 @@ rooms = []
 @app.route("/")
 def index():
     return render_template("index.html")
+@app.route("/index")
+def test():
+    return "Hello World"
 
 @socketio.on("sign_up")
 def sign_up(username,password):
@@ -346,4 +349,4 @@ if __name__ == "__main__":
     db.create_all()
 #   app.run(host="127.0.0.1",debug=True,port=5000)
 #  socketio.run(app,host='0.0.0.0',port=5000,debug=True)
- socketio.run(app,host='0.0.0.0',port=5000)
+ socketio.run(app,host='0.0.0.0',port=5001)
