@@ -6,7 +6,7 @@ server: flask flask-socketio<br>
 client: react io-client<br>
 database:sqlite<br>
 
-リアルタイム通信のために、websocketを用いています。
+リアルタイム通信のために、websocketを用いています。<br>
 CSSフレームワークはtailwindを使用しています。
 
 [サーバーの構成]<br>
