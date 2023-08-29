@@ -1,19 +1,20 @@
 # Heads Up!
-### テキサスホールデムの1vs1のオンライン対戦アプリです。<br>
+### Texas Hold'em 1vs1 online match app.<br>
 
-**[アプリの構成]**<br>
+**[App configuration]**<br>
 server: flask flask-socketio<br>
 client: react io-client<br>
 database:sqlite<br>
 
-リアルタイム通信のために、websocketを用いています。<br>
-CSSフレームワークはtailwindを使用しています。
+I am using websockets for real time communication.<br>
+I am using tailwind as CSS framework.
 
-**[サーバーの構成]**<br>
+**[Server configuration]**<br>
 webserver: nginx<br>
 ↓<br>
 port 443 ssl: npm server<br>
 port 8081 ssl: uwsgi(gevent)  <-> port 5001:flask<br> 
 
-EC2のt2.micro上でアプリを実行しています。<br>
-Let’s Encryptを用いてssl対応しています。<br>
+I'm running the app on a t2.micro on EC2.<br>
+It supports SSL using Let's Encrypt.
+<br>
