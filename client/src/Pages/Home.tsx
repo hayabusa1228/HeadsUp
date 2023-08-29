@@ -30,10 +30,10 @@ const Home: React.FC = () => {
         <div className="absolute flex-col lg:flex-row inset-0 flex items-center justify-center text-white w-full">
           <div className="bg-gray-100  bg-cover p-6 lg:p-8 rounded-xl italic text-2xl text-gray-900 border-4 border-black border-double">
             <div className="text-4xl decoration-red-500 underline mb-4 text-center">Profile<br></br></div>
-            <div className='my-2 px-5'>♠ ユーザー名: {user_name}</div>
+            <div className='my-2 px-5'>♠ user name: {user_name}</div>
             <div className='my-2 px-5'>♦ rate: {rate}</div>
-            <div className='my-2 px-5'>♣ 試合数: {match_num}</div>
-            <div className='my-2 px-5'>♥ 勝率: {match_num !== 0 ?  (win_num/match_num*100).toFixed(1): 0}%</div>
+            <div className='my-2 px-5'>♣ match num: {match_num}</div>
+            <div className='my-2 px-5'>♥ win rate: {match_num !== 0 ?  (win_num/match_num*100).toFixed(1): 0}%</div>
           </div>
           <div className='flex flex-col lg:flex-row'>
           <a href="/matching" className="flex items-center justify-center m-5 p-6 text-4xl">

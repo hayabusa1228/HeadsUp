@@ -71,12 +71,12 @@ const SignIn: React.FC = () => {
                 socket.emit("sign_in",nameRef!.current!.value,passwordRef!.current!.value)
                 socket.on("res_sign_in",(data:any) => {
                   if(data["msg"] === "user_not_exist"){
-                    set_alert(() => "Userが存在しません")
+                    set_alert(() => "User does not exist")
                   }else if(data["msg"] === "complete_sign_in"){
                     Cookies.set("user_name",data["name"])
                     window.location.href = "/home"
                   }else{
-                    set_alert(() => "Passwordが違います")
+                    set_alert(() => "Password is wrong")
                   }
                 })
               }}

@@ -39,7 +39,8 @@ const Matching: React.FC = () => {
 <div className='bg-home-bg-img h-screen bg-cover bg-opacity-10'>
 <Header/>
 <div className="absolute flex-col lg:flex-row inset-0 flex items-center justify-center text-white w-full">
-<div className='bg-gray-900 p-10 text-xl rounded-xl border-double border-4 border-white'>対戦相手を探しています</div>
+<div className='bg-gray-900 p-10 text-xl rounded-xl border-double border-4 border-white'>
+matching...</div>
 </div>
 </div>
   )

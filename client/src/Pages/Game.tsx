@@ -295,7 +295,7 @@ const Game: React.FC = () => {
     { !game_end_page_show ? 
     <div className='bg-poker-table-bg-img h-screen bg-cover'>
       <Header/>
-      <div className='relative top-0 left-0 text-white text-md  md:text-lg mx-4'>残り{hand_num}ハンド （SB-BB:{sb_bet}-{bb_bet}）
+      <div className='relative top-0 left-0 text-white text-md  md:text-lg mx-4'>{hand_num}Hands left （SB-BB:{sb_bet}-{bb_bet}）
       {
         timer >= 0 ?
         <>

@@ -26,7 +26,7 @@ const Result: React.FC = () => {
       set_result(prev => "YOU LOSE")
       set_plus_minus(() => "-")
     }else if(winner === "opponent exit"){
-      set_result(prev => "相手との接続が切れました")
+      set_result(prev => "The connection with the opponent has been lost.")
       set_plus_minus(() => "+")
       socket.emit("update_rate",table_id,user_name)
     }else{
@@ -58,7 +58,7 @@ const Result: React.FC = () => {
           <button
               className="bg-gray-900 hover:text-gray-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline italic"
               type="button">
-              Homeに戻る
+              Home
             </button>
         </a>          
       </div>

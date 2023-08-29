@@ -72,11 +72,11 @@ const SignUp: React.FC = () => {
                   if(data["msg"]==="complete_sign_up"){
                     window.location.href = "/"
                   }else if(data["msg"]==="name_empty"){
-                    set_alert(() => "Usernameを入力してください")
+                    set_alert(() => "Please enter your username")
                   }else if(data["msg"]==="password_empty"){
-                    set_alert(() => "Passwordを入力してください")
+                    set_alert(() => "Please enter your password")
                   }else{
-                    set_alert(() => "Usernameが既に存在しています")
+                    set_alert(() => "Username already exists")
                   }
                 })
               }}
