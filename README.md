@@ -15,6 +15,6 @@ webserver: nginx<br>
 port 443 ssl: npm server<br>
 port 8081 ssl: uwsgi(gevent)  <-> port 5001:flask<br> 
 
-I'm running the app on a t2.micro on EC2.<br>
+I'm running this app on a t2.micro on EC2.<br>
 It supports SSL using Let's Encrypt.
 <br>
