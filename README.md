@@ -1,6 +1,8 @@
 # Heads Up!
 ### Texas Hold'em 1vs1 online match app.<br>
 
+サーバー代がかかるため現在は公開していません、
+
 **[App configuration]**<br>
 server: flask flask-socketio<br>
 client: react io-client<br>
