@@ -18,3 +18,8 @@ port 8081 ssl: uwsgi(gevent)  <-> port 5001:flask<br>
 I'm running this app on a t2.micro on EC2.<br>
 It supports SSL using Let's Encrypt.
 <br>
+
+<p>
+<img src="https://github.com/hayabusa1228/HeadsUp/issues/1#issue-2317530615">
+<img src="https://github.com/hayabusa1228/HeadsUp/issues/2#issue-2317533188">
+</p>
